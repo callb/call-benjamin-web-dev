@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../../css/style.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -15,16 +15,16 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="page-list.html" class="navbar-link">
+                <a href="../../widgets/widget-list.html" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">
-                Edit Page
+                Widget Edit
             </a>
             <p class="navbar-text pull-right">
-                <a href="page-list.html" class="navbar-link">
+                <a href="../../widgets/widget-list.html" class="navbar-link">
                       <span class="glyphicon glyphicon-ok">
                       </span>
                 </a>
@@ -37,36 +37,32 @@
 
     <form>
         <div class="form-group">
-            <label for="name">Page Name</label>
+            <label for="name">Widget Name</label>
             <input type="text"
-                   value="Blog Post"
                    class="form-control"
                    id="name"
-                   placeholder="blog post"/>
+                   placeholder="Widget Name"/>
         </div>
         <div class="form-group">
-            <label for="title">Page Title</label>
+            <label for="text">Widget Title</label>
             <input type="text"
+                   value="US Senate Reaches Compromise"
                    class="form-control"
-                   id="title"
-                   placeholder="Page Title"/>
+                   id="text"
+                   placeholder="Widget Text"/>
+        </div>
+        <div class="form-group">
+            <label for="size">Widget Size</label>
+            <input type="text"
+                   value="3"
+                   class="form-control"
+                   id="size"
+                   placeholder="Widget Size"/>
         </div>
     </form>
 
     <a class="btn btn-danger btn-block"
-       href="page-list.html">Delete</a>
+       href="../../widgets/widget-list.html">Delete</a>
 </div>
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-right">
-                <a href="../user/profile.html" class="navbar-link">
-                      <span class="glyphicon glyphicon-user">
-                      </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
 </body>
 </html>
