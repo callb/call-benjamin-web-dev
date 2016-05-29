@@ -31,7 +31,40 @@
             }
             return false;
         }
-        function createUser(user) {}
+
+        function createUser(user) {
+            var newId = generateId();
+            for (var i in users) {
+                if (users[i].username === user.username) {
+                    return false;
+                }
+
+            }
+
+            user._id = newId;
+            users.push(user);
+            console.log(users);
+
+            return user;
+        }
+
+        // helper function that generates a new random id
+        function generateId() {
+            var newId = Math.floor((Math.random() * 999));
+            var idExists = true;
+            while (idExists) {
+                for (var i in users) {
+                    if (users[i]._id === newId) {
+                        break;
+                    }
+                }
+
+                idExists = false;
+            }
+
+            return newId;
+        }
+
         function deleteUser(id) {}
         function findUserByUsernameAndPassword(username, password) {
             for(var i in users) {

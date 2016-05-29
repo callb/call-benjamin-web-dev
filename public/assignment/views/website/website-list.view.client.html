@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="website-new.html">
+            <a class="navbar-brand" href="website-new.view.client.html">
                 Websites
             </a>
             <p class="navbar-text pull-right">
@@ -17,7 +17,7 @@
 <div class="container">
     <ul class="list-group">
         <li ng-repeat="website in model.websites" class="list-group-item">
-            <a href="../page/page-list.html">{{website.name}}</a>
+            <a href="../page/page-list.view.client.html">{{website.name}}</a>
             <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
                 <span class="glyphicon glyphicon-play"></span>
