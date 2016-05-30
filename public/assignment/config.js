@@ -56,7 +56,7 @@
                 templateUrl: "views/widget/widget-list.view.client.html",
                 controller: "EditPageController",
                 controllerAs: "model"
-
+            })
             // widget routes
             .when("/user/:userId/website/:websiteId/page/:pageId/widget", {
                 templateUrl: "views/widget/widget-list.view.client.html",
