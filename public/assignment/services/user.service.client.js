@@ -41,9 +41,8 @@
 
             }
 
-            user._id = newId;
+            user._id = newId.toString();
             users.push(user);
-            console.log(users);
 
             return user;
         }

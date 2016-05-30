@@ -1,4 +1,9 @@
 <div class="container">
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <h2>Register</h2>
     <input ng-model="username" class="form-control"
            placeholder="username"
