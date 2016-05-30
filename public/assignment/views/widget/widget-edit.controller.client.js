@@ -16,6 +16,7 @@
         vm.pageId = pageId;
         vm.widgetId = widgetId;
         vm.updateWidget = updateWidget;
+        vm.deleteWidget = deleteWidget;
 
         function init() {
             vm.widget = WidgetService.findWidgetById(widgetId);
@@ -24,6 +25,12 @@
 
         function updateWidget(widgetId, widget) {
             var newWidget = WidgetService.updateWidget(widgetId, widget);
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +
+                "/page/" + vm.pageId + "/widget");
+        }
+
+        function deleteWidget(widgetId) {
+            var result = WidgetService.deleteWidget(widgetId);
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +
                 "/page/" + vm.pageId + "/widget");
         }
