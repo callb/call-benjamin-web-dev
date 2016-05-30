@@ -1,93 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Web App Maker</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <p class="navbar-text pull-left">
-                    <a href="../website/website-list.html" class="navbar-link">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
-                    </a>
-                </p>
-                <a class="navbar-brand" href="profile.html">
-                    Pages
                 </a>
-                <p class="navbar-text pull-right">
-<<<<<<< HEAD:public/assignment/website/website-list.html
-                    <a href="website-new.html" class="navbar-link">
-=======
-                    <a href="page-new.view.client.html" class="navbar-link">
->>>>>>> 85a2f29673adcbaca6f0e3c8eed96ce72bc695f4:public/assignment/views/page/page-list.html
+            </p>
+            <a class="navbar-brand">
+                Pages
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="page-new.view.client.html" class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
                       </span>
-                    </a>
-                </p>
-            </div>
+                </a>
+            </p>
         </div>
-    </nav>
-
-    <div class="container">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a href="../widget/widget-list.view.client.html">Home</a>
-                <a href="page-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../pages/page-list.html">Website 1</a>
-                <a href="website-edit.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../pages/page-list.html">Website 2</a>
-                <a href="website-edit.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../pages/page-list.html">Website 3</a>
-                <a href="website-edit.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="../pages/page-list.html">Website 4</a>
-                <a href="website-edit.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-            </li>
-        </ul>
     </div>
+</nav>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <p class="navbar-text pull-right">
-                    <a href="../user/profile.html" class="navbar-link">
+<div class="container">
+    <ul class="list-group">
+        <li ng-repeat="page in model.pages" class="list-group-item">
+            <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+            <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}" class="navbar-link">
                       <span class="glyphicon glyphicon-user">
                       </span>
-                    </a>
-                </p>
-            </div>
+                </a>
+            </p>
         </div>
-    </nav>
-</body>
-</html>
+    </div>
+</nav>
