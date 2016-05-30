@@ -11,7 +11,7 @@
                 Widget Edit
             </a>
             <p class="navbar-text pull-right">
-                <a class="navbar-link">
+                <a ng-click="model.updateWidget(model.widgetId, model.widget)" class="navbar-link">
                       <span class="glyphicon glyphicon-ok">
                       </span>
                 </a>
@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label for="vidurl">Widget URL</label>
-                <input type="text"
+                <input ng-model="model.widget.url" type="text"
                        value="https://you.be/uLWLashCXHE"
                        class="form-control"
                        id="vidurl"
@@ -48,15 +48,14 @@
             </div>
             <div class="form-group">
                 <label for="vidwidth">Widget Width</label>
-                <input type="text"
-                       value="100%"
+                <input ng-model="model.widget.width" type="text"
                        class="form-control"
                        id="vidwidth"
                        placeholder="Widget Width"/>
             </div>
         </form>
     </div>
-    <form ng-switch-when="HEADING">
+    <form ng-switch-when="HEADER">
         <div class="form-group">
             <label for="headname">Widget Name</label>
             <input type="text"
@@ -65,17 +64,15 @@
                    placeholder="Widget Name"/>
         </div>
         <div class="form-group">
-            <label for="headtext">Widget Title</label>
-            <input type="text"
-                   value="US Senate Reaches Compromise"
+            <label for="headtext">Widget Text</label>
+            <input ng-model="model.widget.text" type="text"
                    class="form-control"
                    id="headtext"
                    placeholder="Widget Text"/>
         </div>
         <div class="form-group">
             <label for="headsize">Widget Size</label>
-            <input type="text"
-                   value="3"
+            <input ng-model="model.widget.size" type="text"
                    class="form-control"
                    id="headsize"
                    placeholder="Widget Size"/>
@@ -100,7 +97,7 @@
         </div>
         <div class="form-group">
             <label for="imageurl">Widget URL</label>
-            <input type="text"
+            <input ng-model="model.widget.url" type="text"
                    value="https:google.com/image"
                    class="form-control"
                    id="imageurl"

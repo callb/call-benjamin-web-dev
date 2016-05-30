@@ -28,7 +28,18 @@
         function updateWidget(widgetId, widget) {
             for(var i in widgets) {
                 if(widgets[i]._id === widgetId) {
-                    widgets[i].name = widget;
+                    switch(widgets[i].widgetType) {
+                        case "HEADER":
+                            widgets[i].text = widget.text;
+                            widgets[i].size = widget.size;
+                            break;
+                        case "IMAGE":
+                            widgets[i].url = widget.url;
+                            break;
+                        case "YOUTUBE":
+                            widgets[i].url = widget.url;
+                            break;
+                    }
                     return true;
                 }
             }
