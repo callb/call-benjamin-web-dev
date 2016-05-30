@@ -65,32 +65,14 @@
             return result;
         }
 
-
-        // helper function that generates a new random website id
-        function generateId() {
-            var newId = Math.floor((Math.random() * 999));
-            var idExists = true;
-            while (idExists) {
-                idExists = false;
-                for (var i in widgets) {
-                    if (widgets[i]._id === newId) {
-                        idExists = true;
-                    }
-                }
-            }
-
-            return newId;
-        }
-
-        function createWidget(pageId, widget) {
+        function createWidget(pageId, widgetType) {
             var newWidget = {
-                "_id": generateId().toString(),
-                "name": page,
-                "pageId" : pageId
-            }
-
-            pages.push(newPage);
-            return newPage;
+                _id: (new Date()).getTime().toString(),
+                widgetType: widgetType,
+                pageId: pageId
+            };
+            widgets.push(newWidget);
+            return newWidget;
         }
 
     }

@@ -1,0 +1,132 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                      <span class="glyphicon glyphicon-chevron-left">
+                      </span>
+                </a>
+            </p>
+            <a class="navbar-brand">
+                Widget Edit
+            </a>
+            <p class="navbar-text pull-right">
+                <a class="navbar-link">
+                      <span class="glyphicon glyphicon-ok">
+                      </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div ng-switch="model.widget.widgetType" class="container">
+    <div ng-switch-when="YOUTUBE">
+        <form>
+            <div class="form-group">
+                <label for="vidname">Widget Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="vidname"
+                       placeholder="Widget Name"/>
+            </div>
+            <div class="form-group">
+                <label for="vidtext">Widget Text</label>
+                <input type="text"
+                       class="form-control"
+                       id="vidtext"
+                       placeholder="Widget Text"/>
+            </div>
+            <div class="form-group">
+                <label for="vidurl">Widget URL</label>
+                <input type="text"
+                       value="https://you.be/uLWLashCXHE"
+                       class="form-control"
+                       id="vidurl"
+                       placeholder="Widget URL"/>
+            </div>
+            <div class="form-group">
+                <label for="vidwidth">Widget Width</label>
+                <input type="text"
+                       value="100%"
+                       class="form-control"
+                       id="vidwidth"
+                       placeholder="Widget Width"/>
+            </div>
+        </form>
+    </div>
+    <form ng-switch-when="HEADING">
+        <div class="form-group">
+            <label for="headname">Widget Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="headname"
+                   placeholder="Widget Name"/>
+        </div>
+        <div class="form-group">
+            <label for="headtext">Widget Title</label>
+            <input type="text"
+                   value="US Senate Reaches Compromise"
+                   class="form-control"
+                   id="headtext"
+                   placeholder="Widget Text"/>
+        </div>
+        <div class="form-group">
+            <label for="headsize">Widget Size</label>
+            <input type="text"
+                   value="3"
+                   class="form-control"
+                   id="headsize"
+                   placeholder="Widget Size"/>
+        </div>
+    </form>
+
+
+    <form ng-switch-when="IMAGE">
+        <div class="form-group">
+            <label for="imagename">Widget Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="imagename"
+                   placeholder="Widget Name"/>
+        </div>
+        <div class="form-group">
+            <label for="imagetext">Widget Text</label>
+            <input type="text"
+                   class="form-control"
+                   id="imagetext"
+                   placeholder="Widget Text"/>
+        </div>
+        <div class="form-group">
+            <label for="imageurl">Widget URL</label>
+            <input type="text"
+                   value="https:google.com/image"
+                   class="form-control"
+                   id="imageurl"
+                   placeholder="Widget URL"/>
+        </div>
+        <div class="form-group">
+            <label for="imagewidth">Widget Width</label>
+            <input type="text"
+                   value="100%"
+                   class="form-control"
+                   id="imagewidth"
+                   placeholder="Widget Width"/>
+        </div>
+        <div class="form-group">
+            <label for="upload">Upload</label>
+            <input type="file"
+                   value="Choose File No File Chosen"
+                   class="form-control"
+                   id="upload"
+                   placeholder="No file chosen"/>
+        </div>
+
+        <a class="btn btn-primary btn-block"
+           href="#">Upload Image</a>
+    </form>
+
+    <a class="btn btn-danger btn-block"
+       href="../../widgets/widget-list.html">Delete</a>
+</div>
