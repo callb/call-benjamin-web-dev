@@ -32,7 +32,17 @@
             
             return false;
         }
-        function deleteWebsite() {}
+        function deleteWebsite(websiteId) {
+            for(var i in websites) {
+                if(websites[i]._id === websiteId) {
+                    delete websites[i];
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
         function findWebsiteById(websiteId) {
             for(var i in websites) {
                 if(websites[i]._id === websiteId) {

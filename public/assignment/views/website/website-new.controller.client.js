@@ -16,6 +16,7 @@
             $location.url("/user/" + vm.userId + "/website");
 
         }
+
     }
 
 

@@ -64,7 +64,17 @@
             return newId;
         }
 
-        function deleteUser(id) {}
+        function deleteUser(id) {
+            for(var i in users) {
+                if(users[i]._id === id) {
+                    delete users[i];
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
         function findUserByUsernameAndPassword(username, password) {
             for(var i in users) {
                 if(users[i].username === username && users[i].password === password) {
