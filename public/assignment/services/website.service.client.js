@@ -15,10 +15,24 @@
 
         var api = {
             findWebsitesForUser: findWebsitesForUser,
-            findWebsiteById: findWebsiteById
+            findWebsiteById: findWebsiteById,
+            createWebsite : createWebsite,
+            updateWebsite : updateWebsite,
+            deleteWebsite : deleteWebsite
         };
         return api;
 
+        function updateWebsite(websiteId, website) {
+            for(var i in websites) {
+                if(websites[i]._id === websiteId) {
+                    websites[i].name = website;
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        function deleteWebsite() {}
         function findWebsiteById(websiteId) {
             for(var i in websites) {
                 if(websites[i]._id === websiteId) {
@@ -37,5 +51,35 @@
             }
             return result;
         }
+
+
+        // helper function that generates a new random website id
+        function generateId() {
+            var newId = Math.floor((Math.random() * 999));
+            var idExists = true;
+            while (idExists) {
+                for (var i in websites) {
+                    if (websites[i]._id === newId) {
+                        break;
+                    }
+                }
+
+                idExists = false;
+            }
+
+            return newId;
+        }
+
+        function createWebsite(userId, website) {
+            var newWebsite = {
+                "_id": generateId().toString(),
+                "name": website,
+                "developerId": userId
+            }
+
+            websites.push(newWebsite);
+            return newWebsite;
+        }
+
     }
 })();
