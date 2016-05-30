@@ -13,6 +13,7 @@
 
         function init() {
             vm.page = PageService.findPageById(vm.pageId);
+            vm.pageName = vm.page.name;
         }
         init();
 
@@ -20,7 +21,7 @@
             var result = PageService.updatePage(pageId, page);
             if(result === true) {
                 vm.success = "Page successfully updated";
-                $location.url("/user/" + vm.userId + "/website" + vm.websiteId + "/page");
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
             } else {
                 vm.error = "Unable to update, Page not found";
             }
@@ -30,7 +31,7 @@
             var result = PageService.deletePage(pageId);
             if(result === true) {
                 vm.success = "Page successfully deleted";
-                $location.url("/user/" + vm.userId + "/website" + vm.websiteId + "/page");
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
             } else {
                 vm.error = "Unable to delete, Page not found";
             }
