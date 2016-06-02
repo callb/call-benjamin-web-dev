@@ -6,30 +6,22 @@
     function RegisterController($location, UserService) {
 
         var vm = this;
+        
+        vm.register = register;
 
-        vm.createUser = createUser;
+        function register (username, password, password2) {
 
-        function createUser (username, password, verifyPassword) {
-            if (password === verifyPassword) {
-                var newUser = {
-                    _id: null, 
-                    username: username, 
-                    password: password, 
-                    firstName: null,  
-                    lastName: null
-                }
-                
-                var result = UserService.createUser(newUser);
-                if (result) {
-                    $location.url("/user/" + result._id);
-                } else {
-                    vm.error = "Username already in use. Please choose a different one."
-                }
-
-            } else {
-                vm.error = "Passwords don't match. Please try again."
-            }
-
+            UserService
+                .createUser(username, password)
+                .then(
+                    function(response){
+                        var user = response.data;
+                        $location.url("/profile/"+user._id);
+                    },
+                    function(error){
+                        vm.error = error.data;
+                    }
+                );
         }
     }
 })();

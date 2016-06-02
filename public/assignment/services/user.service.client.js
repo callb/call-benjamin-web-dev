@@ -3,14 +3,7 @@
         .module("WebAppMaker")
         .factory("UserService", UserService);
 
-    function UserService() {
-
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
+    function UserService($http) {
 
         var api = {
             createUser: createUser,
@@ -22,74 +15,29 @@
         return api;
 
         function updateUser(id, newUser) {
-            for(var i in users) {
-                if(users[i]._id === id) {
-                    users[i].firstName = newUser.firstName;
-                    users[i].lastName = newUser.lastName;
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/user/"+id;
+            return $http.put(url, newUser);
         }
-
-        function createUser(user) {
-            var newId = generateId();
-            for (var i in users) {
-                if (users[i].username === user.username) {
-                    return false;
-                }
-
-            }
-
-            user._id = newId.toString();
-            users.push(user);
-
-            return user;
+        function createUser(username, password) {
+            var url = "/api/user";
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, user);
         }
-
-        // helper function that generates a new random id
-        function generateId() {
-            var newId = Math.floor((Math.random() * 999));
-            var idExists = true;
-            while (idExists) {
-                for (var i in users) {
-                    if (users[i]._id === newId) {
-                        break;
-                    }
-                }
-
-                idExists = false;
-            }
-
-            return newId;
-        }
-
         function deleteUser(id) {
-            for(var i in users) {
-                if(users[i]._id === id) {
-                    delete users[i];
-                    return true;
-                }
-            }
-            
-            return false;
+            var url = "/api/user/"+id;
+            return $http.delete(url);
         }
-        
+
         function findUserByUsernameAndPassword(username, password) {
-            for(var i in users) {
-                if(users[i].username === username && users[i].password === password) {
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "/api/user?username="+username+"&password="+password;
+            return $http.get(url);
         }
         function findUserById(id) {
-            for(var i in users) {
-                if(users[i]._id === id) {
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "/api/user/" + id;
+            return $http.get(url);
         }
 
     }
