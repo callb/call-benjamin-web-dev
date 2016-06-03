@@ -18,7 +18,7 @@
                         var user = response.data;
                         if(user) {
                             var id = user._id;
-                            $location.url("/profile/" + id);
+                            $location.url("/user/" + id);
                         }
                     },
                     function (error) {
