@@ -2,13 +2,7 @@
     angular.module("WebAppMaker")
         .factory("PageService", PageService);
 
-    var pages = [
-        { "_id": "321", "name": "Post 1", "websiteId": "456" },
-        { "_id": "432", "name": "Post 2", "websiteId": "456" },
-        { "_id": "543", "name": "Post 3", "websiteId": "456" }
-    ];
-
-    function PageService() {
+    function PageService($http) {
 
         var api = {
             findPagesByWebsiteId: findPagesByWebsiteId,
@@ -20,71 +14,30 @@
         return api;
 
         function updatePage(pageId, page) {
-            for(var i in pages) {
-                if(pages[i]._id === pageId) {
-                    pages[i].name = page;
-                    return true;
-                }
-            }
-
-            return false;
+            var url = "/api/page/" + pageId;
+            return $http.put(url, page);
         }
         function deletePage(pageId) {
-            for(var i in pages) {
-                if(pages[i]._id === pageId) {
-                    delete pages[i];
-                    return true;
-                }
-            }
-
-            return false;
+            var url = "/api/page/" + pageId;
+            return $http.delete(url);
 
         }
         function findPageById(pageId) {
-            for(var i in pages) {
-                if(pages[i]._id === pageId) {
-                    return pages[i];
-                }
-            }
-            return null;
+            var url = "/api/page/" + pageId;
+            return $http.get(url);
         }
 
         function findPagesByWebsiteId(websiteId) {
-            var result = [];
-            for(var i in pages) {
-                if(pages[i].websiteId === websiteId) {
-                    result.push(pages[i]);
-                }
-            }
-            return result;
-        }
-
-
-        // helper function that generates a new random website id
-        function generateId() {
-            var newId = Math.floor((Math.random() * 999));
-            var idExists = true;
-            while (idExists) {
-                idExists = false;
-                for (var i in pages) {
-                    if (pages[i]._id === newId) {
-                        idExists = true;
-                    }
-                }
-            }
-
-            return newId;
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.get(url);
         }
 
         function createPage(websiteId, page) {
+            var url = "/api/website/" + websiteId + "/page";
             var newPage = {
-                "_id": generateId().toString(),
-                "name": page,
-                "websiteId" : websiteId
+                name: page
             }
-
-            pages.push(newPage);
-            return newPage;
+            return $http.post(url, newPage);
         }
 
     }

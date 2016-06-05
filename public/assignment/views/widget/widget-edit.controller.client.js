@@ -19,18 +19,30 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(widgetId);
+           WidgetService
+               .findWidgetById(widgetId)
+               .then(function(response) {
+                   vm.widget = response.body;
+               })
         }
-        init()
+        init();
 
         function updateWidget(widgetId, widget) {
-            var newWidget = WidgetService.updateWidget(widgetId, widget);
+            WidgetService
+                .updateWidget(widgetId, widget)
+                .then(function(response) {
+                    vm.newWidget = response.body;
+                });
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +
                 "/page/" + vm.pageId + "/widget");
         }
 
         function deleteWidget(widgetId) {
-            var result = WidgetService.deleteWidget(widgetId);
+            WidgetService
+                .deleteWidget(widgetId)
+                .then(function(response) {
+                    vm.result = response.body;
+                });
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +
                 "/page/" + vm.pageId + "/widget");
         }

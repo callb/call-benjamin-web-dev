@@ -11,8 +11,12 @@
         vm.createPage = createPage;
 
         function createPage(websiteId, page) {
-            var page = PageService.createPage(websiteId, page);
-            vm.pageName = page.name;
+            PageService
+                .createPage(websiteId, page)
+                .then(function(response) {
+                    vm.page = response.body;
+                    vm.pageName = page.name;
+                })
 
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
 

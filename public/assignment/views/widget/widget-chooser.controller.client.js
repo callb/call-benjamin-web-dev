@@ -15,11 +15,16 @@
         vm.pageId = pageId;
         vm.createWidget = createWidget;
 
-        function createWidget(pageId, widgetType) {
-            var newWidget = WidgetService.createWidget(pageId, widgetType);
-            vm.widgetType = widgetType;
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +
-                "/page/" + vm.pageId + "/widget/" + newWidget._id);
+        function createWidget(pageId, widget) {
+            WidgetService
+                .createWidget(pageId, widget)
+                .then(function(response) {
+                    console.log(response.body);
+                    vm.widget = response.body;
+                    vm.widgetType = vm.widget.widgetType;
+                })
+            $location.url("/user/" + userId + "/website/" + websiteId + "/page" + pageId + "/widget/");
+
         }
     }
 })();

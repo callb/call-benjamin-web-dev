@@ -3,6 +3,7 @@ module.exports = function(app) {
     var userService = require("./services/user.services.server.js")(app);
     var websiteService = require("./services/website.services.server.js")(app);
     var pageService = require("./services/page.services.server.js")(app);
+    var widgetService = require("./services/widget.services.server.js")(app);
     
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -11,11 +12,6 @@ module.exports = function(app) {
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
     ];
 
-    
-    
-    
-    
-    
     
     app.get("/allusers/:username", function(req, res){
         var username = req.params['username'];

@@ -12,29 +12,40 @@
         vm.deletePage = deletePage;
 
         function init() {
-            vm.page = PageService.findPageById(vm.pageId);
-            vm.pageName = vm.page.name;
+            PageService
+                .findPageById(vm.pageId)
+                .then(function(response) {
+                    vm.page = response.data;
+                })
         }
         init();
 
-        function updatePage(pageId, page) {
-            var result = PageService.updatePage(pageId, page);
-            if(result === true) {
-                vm.success = "Page successfully updated";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            } else {
-                vm.error = "Unable to update, Page not found";
-            }
+        function updatePage(pageId) {
+            PageService
+                .updatePage(pageId, vm.page)
+                .then(
+                    function(response) {
+                        vm.success = "Page successfully updated";
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
 
         function deletePage(pageId) {
-            var result = PageService.deletePage(pageId);
-            if(result === true) {
-                vm.success = "Page successfully deleted";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            } else {
-                vm.error = "Unable to delete, Page not found";
-            }
+            PageService
+                .deletePage(pageId)
+                .then(
+                    function(response) {
+                        vm.success = "Page successfully deleted";
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
 
         }
 

@@ -24,7 +24,7 @@
                 .updateWebsite(websiteId, vm.website)
                 .then(
                     function(response) {
-                        vm.success = "User successfully updated";
+                        vm.success = "Website successfully updated";
                         $location.url("/user/" + vm.userId + "/website");
                     },
                     function(error) {

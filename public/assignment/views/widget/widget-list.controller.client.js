@@ -16,7 +16,11 @@
         vm.getTrustedUrl = getTrustedUrl;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(pageId);
+            WidgetService
+                .findWidgetsByPageId(pageId)
+                .then(function (response) {
+                    vm.widgets = response.data;
+                })
         }
         init();
         

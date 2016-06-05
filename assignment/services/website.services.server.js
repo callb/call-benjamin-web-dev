@@ -48,7 +48,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.status(400).send("User with ID: "+ id +" not found");
+        res.status(400).send("Website with ID: "+ id +" not found");
     }
 
     function findWebsiteById(req, res) {
