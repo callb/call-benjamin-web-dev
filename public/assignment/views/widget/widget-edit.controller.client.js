@@ -22,7 +22,7 @@
            WidgetService
                .findWidgetById(widgetId)
                .then(function(response) {
-                   vm.widget = response.body;
+                   vm.widget = response.data;
                })
         }
         init();

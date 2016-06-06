@@ -19,11 +19,11 @@
             WidgetService
                 .createWidget(pageId, widget)
                 .then(function(response) {
-                    console.log(response.body);
-                    vm.widget = response.body;
+                    vm.widget = response.data;
                     vm.widgetType = vm.widget.widgetType;
-                })
-            $location.url("/user/" + userId + "/website/" + websiteId + "/page" + pageId + "/widget/");
+                    $location.url("/user/" + userId + "/website/" + websiteId +
+                        "/page/" + pageId + "/widget/" + vm.widget._id);
+                });
 
         }
     }
