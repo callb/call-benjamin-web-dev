@@ -1,7 +1,7 @@
 module.exports = function() {
 
     var mongoose = require("mongoose");
-    var UserSchema = require("./user.schema.server")();
+    var UserSchema = require("./user.schema.server.js")();
     var User = mongoose.model("User", UserSchema);
 
     var api = {
@@ -25,7 +25,7 @@ module.exports = function() {
 
     }
     function findUserById(userId) {
-        User.findById(userId);
+        return User.findById(userId);
     }
     function updateUser() {
 
