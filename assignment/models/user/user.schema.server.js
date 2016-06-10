@@ -10,7 +10,7 @@ module.exports = function() {
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
 
-    }, {collection: "user"});
+    }, {collection: "assignment.user"});
 
     return UserSchema;
 };

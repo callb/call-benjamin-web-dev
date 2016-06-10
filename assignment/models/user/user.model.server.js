@@ -15,22 +15,26 @@ module.exports = function() {
 
     function createUser(user) {
         return User.create(user);
-        //User.create(user, function(err, user) {
-        //    model.find(function() {
-        //        model.find
-        //    })
-        //});
     }
-    function findUserByCredentials() {
-
+    function findUserByCredentials(username, password) {
+        return User.findOne({username: username, password: password});
     }
     function findUserById(userId) {
         return User.findById(userId);
     }
-    function updateUser() {
+    function updateUser(id, newUser) {
+        return User.update(
+            {_id: id},
+            {$set :
+                {
+                    firstName: newUser.firstName,
+                    lastName: newUser.lastName
+                }
 
+            }
+        );
     }
-    function deleteUser() {
-
+    function deleteUser(userId) {
+        return User.remove({_id: userId});
     }
 };
