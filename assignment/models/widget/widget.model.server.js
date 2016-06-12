@@ -65,6 +65,33 @@ module.exports = function() {
                     }
                 );
                 break;
+
+            case "HTML":
+                return Widget.update(
+                    {_id: id},
+                    {$set :
+                    {
+                        type: newWidget.type,
+                        text: newWidget.text
+                    }
+                    }
+                );
+                break;
+            case "INPUT":
+                return Widget.update(
+                    {_id: id},
+                    {$set :
+                    {
+                        type: newWidget.type,
+                        text: newWidget.text,
+                        rows: newWidget.rows,
+                        placeholder: newWidget.placeholder,
+                        formatted: newWidget.formatted,
+
+                    }
+                    }
+                );
+                break;
         }
     }
 

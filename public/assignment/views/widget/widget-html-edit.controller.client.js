@@ -1,9 +1,9 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("EditWidgetController", EditWidgetController);
+        .controller("EditHTMLWidgetController", EditHTMLWidgetController);
 
-    function EditWidgetController($location, $routeParams, WidgetService) {
+    function EditHTMLWidgetController($location, $routeParams, WidgetService) {
         var vm = this;
 
 
@@ -19,15 +19,11 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-           WidgetService
-               .findWidgetById(widgetId)
-               .then(function(response) {
-                   vm.widget = response.data;
-                   if (vm.widget.type === "HTML") {
-                       $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +
-                           "/page/" + vm.pageId + "/widget/" + vm.widgetId + "/html");
-                   }
-               })
+            WidgetService
+                .findWidgetById(widgetId)
+                .then(function(response) {
+                    vm.widget = response.data;
+                })
         }
         init();
 
