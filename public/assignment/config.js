@@ -78,6 +78,9 @@
                 controller: "EditWidgetController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/html", {
+                templateUrl: "views/widget/widget-html-edit.view.client.html",
+            })
             .otherwise({
                 redirectTo: "/login"
             });

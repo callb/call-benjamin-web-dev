@@ -20,7 +20,7 @@
                 .createWidget(pageId, widget)
                 .then(function(response) {
                     vm.widget = response.data;
-                    vm.widgetType = vm.widget.widgetType;
+                    vm.widgetType = vm.widget.type;
                     $location.url("/user/" + userId + "/website/" + websiteId +
                         "/page/" + pageId + "/widget/" + vm.widget._id);
                 });

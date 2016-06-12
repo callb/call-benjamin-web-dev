@@ -21,7 +21,7 @@
 </nav>
 
 
-<div ng-switch="model.widget.widgetType" class="container">
+<div ng-switch="model.widget.type" class="container">
     <div ng-switch-when="YOUTUBE">
         <form>
             <div class="form-group">
@@ -55,7 +55,7 @@
             </div>
         </form>
     </div>
-    <form ng-switch-when="HEADER">
+    <form ng-switch-when="HEADING">
         <div class="form-group">
             <label for="headname">Widget Name</label>
             <input type="text"

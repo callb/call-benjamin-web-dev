@@ -21,14 +21,14 @@
 </nav>
 
 <div class="widget-container">
-    <div ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">
+    <div ng-repeat="widget in model.widgets" ng-switch="widget.type">
         <div class="jga-widget-tool">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
-        <div ng-switch-when="HEADER" class="jga-widget">
+        <div ng-switch-when="HEADING" class="jga-widget">
             <div ng-switch="widget.size">
                 <h1 ng-switch-when="1">{{widget.text}}</h1>
                 <h2 ng-switch-when="2">{{widget.text}}</h2>
