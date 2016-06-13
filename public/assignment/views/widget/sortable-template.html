@@ -1,5 +1,5 @@
 <div class="widget-container">
-    <div ng-repeat="widget in model.widgets" ng-switch="widget.type">
+    <div ng-repeat="widget in data" ng-switch="widget.type">
         <div class="jga-widget-tool">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
@@ -20,10 +20,10 @@
             <img ng-src="{{widget.url}}"
                  width="{{widget.width}}"/>
         </div>
-        <div ng-switch-when="HTML" class="jga-widget" ng-bind-html="model.getTrustedHtml(widget)">
+        <div ng-switch-when="HTML" class="jga-widget" ng-bind-html="getTrustedHtml(widget)">
         </div>
         <div ng-switch-when="YOUTUBE" class="jga-widget">
-            <iframe width="{{widget.width}}" height="auto" ng-src="{{model.getTrustedUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
+            <iframe width="{{widget.width}}" height="auto" ng-src="{{getTrustedUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
         </div>
         <div ng-switch-when="INPUT">
             <div ng-if="widget.formatted"

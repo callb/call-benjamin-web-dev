@@ -32,8 +32,11 @@
                     }});
         }
         return {
-            templateUrl: "/sortabletemplate.html", //templateUrl won't load
+            templateUrl: "views/widget/sortable-template.html",
             scope: {
+                data: "=",
+                getTrustedUrl: "=",
+                getTrustedHtml: "=",
                 reorder: "&sorted"
             },
             link: linker
