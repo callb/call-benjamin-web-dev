@@ -5,12 +5,39 @@ module.exports = function(app, models) {
     var widgetModel = models.widgetModel;
 
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.put("/api/reorder", reorderWidgets);
     app.post ("/api/page/:pageId/widget", createWidget);
     app.get ("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get ("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
 
+
+
+    function reorderWidgets(req, res) {
+        var start = parseInt(req.query.start);
+        var end = parseInt(req.query.end);
+        Widget.find(function(err, widgets){
+            widgets.forEach(function(widget){
+                if(start < end) {
+                    if(widget.order >= start && widget.order < end) {
+                        widget.order--;
+                        widget.save();
+                    } else if(widget.order === start) {
+                        widget.order = end;
+                    }
+                } else {
+                    if(widget.order >= end && widget.order < start) {
+                        widget.order++;
+                        widget.save();
+                    } else if(widget.order === start) {
+                        widget.order = end;
+                    }
+                }
+            });
+        });
+        res.send(200);
+    }
 
 
     function createWidget(req, res) {

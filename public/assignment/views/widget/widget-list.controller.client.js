@@ -14,6 +14,7 @@
         vm.pageId = pageId;
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
+        vm.sorted = sorted;
 
         function init() {
             WidgetService
@@ -37,6 +38,13 @@
             var html = $sce.trustAsHtml(widget.text);
             return html;
         }
+
+        function sorted(startIndex, endIndex) {
+            console.log(startIndex);
+            console.log(endIndex);
+            $http.put("/api/reorder?start="+startIndex+"&end="+endIndex);
+        }
+
 
         $(".widget-container")
             .sortable({axis: "y"});

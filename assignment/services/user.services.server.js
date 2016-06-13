@@ -60,21 +60,13 @@ module.exports = function(app, models) {
         userModel
             .deleteUser(id)
             .then(
-                function(status) {
+                function(user) {
                     res.send(200);
                 },
                 function(error) {
                     res.status(404).send("Unable to remove user with ID: " + id);
                 }
             );
- //       for(var i in users) {
- //           if(users[i]._id === id) {
- //               users.splice(i, 1);
- //               res.send(200);
- //               return;
- //           }
- //       }
-        res.status(404).send("Unable to remove user with ID: " + id);
     }
 
     function updateUser(req, res) {
