@@ -1,13 +1,9 @@
 module.exports = function(app, models) {
-
+    
     var userModel = models.userModel;
 
-    var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-    ];
+    var passport = require('passport');
+    LocalStrategy = require('passport-local').Strategy;
 
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
@@ -106,10 +102,12 @@ module.exports = function(app, models) {
         }
     }
     function findUserByCredentials(username, password, res) {
+
         userModel
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
+                    req.user = user;
                     res.json(user);
                 },
                 function(error) {
