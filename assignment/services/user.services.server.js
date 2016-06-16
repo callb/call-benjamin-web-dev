@@ -7,6 +7,9 @@ module.exports = function(app, models) {
 
     app.post("/api/user", createUser);
     app.post("/api/login", passport.authenticate('wam'), login);
+    app.post("/api/register", register);
+    app.post("/api/logout", logout);
+    app.get ("/api/loggedin", loggedin);
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
@@ -54,6 +57,58 @@ module.exports = function(app, models) {
     function login(req, res) {
         var user = req.user;
         res.json(user);
+    }
+
+
+    function register(req, res) {
+        var username = req.body.username;
+        var password = req.body.password;
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function(user) {
+                    if(user) {
+                        res.status(400).send("Username already exists");
+                        return;
+                    } else {
+                        return userModel
+                            .createUser(req.body);
+                    }
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+            .then(
+                function(user) {
+                    if(user) {
+                        req.login(user, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+
+                        });
+                    }
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
+    
+    function logout(req, res) {
+        req.logout();
+        res.send(200);
+    }
+
+    function loggedin(req, res) {
+        if(req.isAuthenticated()) {
+            res.json(req.user);
+        } else {
+            res.send('0');
+        }
     }
 
 

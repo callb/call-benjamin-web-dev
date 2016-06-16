@@ -7,6 +7,9 @@
 
         var api = {
             login: login,
+            register: register,
+            logout: logout,
+            checkLoggedin: checkLoggedin,
             createUser: createUser,
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserById: findUserById,
@@ -22,6 +25,24 @@
                 password: password
             };
             return $http.post(url, user);
+        }
+
+        function register(username, password) {
+            var url = "/api/register";
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, user);
+
+        }
+
+        function logout() {
+            return $http.post('/api/logout');
+        }
+
+        function checkLoggedin() {
+            return $http.get("/api/loggedin");
         }
 
         function updateUser(id, newUser) {

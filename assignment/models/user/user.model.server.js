@@ -6,6 +6,7 @@ module.exports = function() {
 
     var api = {
         createUser: createUser,
+        findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         findUserById: findUserById,
         updateUser: updateUser,
@@ -15,6 +16,10 @@ module.exports = function() {
 
     function createUser(user) {
         return User.create(user);
+    }
+    function findUserByUsername(username) {
+        console.log(username);
+        return User.findOne({username: username});
     }
     function findUserByCredentials(username, password) {
         return User.findOne({username: username, password: password});
