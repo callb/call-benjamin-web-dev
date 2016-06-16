@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("ProjectApp")
+        .module("ElectionCenter")
         .config(Config);
 
     function Config($routeProvider) {
@@ -14,6 +14,11 @@
             .when("/map", {
                 templateUrl: "views/map.view.client.html",
                 controller: "MapController",
+                controllerAs: "model"
+            })
+            .when("/map/:state", {
+                templateUrl: "views/state.view.client.html",
+                controller: "StateController",
                 controllerAs: "model"
             })
             .otherwise({

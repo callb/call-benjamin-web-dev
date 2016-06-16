@@ -1,4 +1,4 @@
-html {
+/* html {
     width: auto;
     height: auto;
     background-image: url("http://wallpapercave.com/wp/o5UXr4f.jpg");
@@ -6,23 +6,50 @@ html {
     background-repeat:   no-repeat;
 
 }
+*/
 
-
-.navbar {
-    color: red;
+body {
+    padding-top: 60px;
+    /* background-image: url("http://wallpapercave.com/wp/o5UXr4f.jpg");
+    background-size:     cover;
+    background-repeat:   no-repeat; */
 }
 
 .nav-element {
     padding-top: 7px;
+    white-space: nowrap;
 }
 
-body {
-    padding-top: 45px;
-    background-image: url("http://wallpapercave.com/wp/o5UXr4f.jpg");
-    background-size:     cover;
-    background-repeat:   no-repeat;
+.home-heading {
+    text-align: center;
+    color: white;
+    font-size: 60px;
+    text-shadow: 0 0 5px black;
+    border-bottom: 1px solid;
+    padding-bottom: 2px;
+
 }
 
+.home-row {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.home-row .home-row-heading {
+    color: white;
+    font-size: 30px;
+    text-shadow: 0 0 5px black;
+}
+
+.home-row .home-row-heading p{
+    color: white;
+    font-size: 15px;
+    text-shadow: 0 0 5px black;
+}
+
+.home-row .home-row-heading a{
+    padding-top: 100px;
+}
 
 .map-heading {
     text-align: center;
@@ -34,7 +61,7 @@ body {
 
 .registration-box {
     border: solid;
-    border-color: black;
+    border-color: white;
     width: 500px;
     height: 500px;
     margin-left: auto;
