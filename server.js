@@ -8,11 +8,14 @@ var passport = require('passport');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cookieParser());
+app.use(session({secret: "thesecret"}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
-app.use(cookieParser());
-app.use(passport.initialize());
-app.use(passport.session({secret: "thesecret"}));
 
 //require ("./test/app.js")(app);
 

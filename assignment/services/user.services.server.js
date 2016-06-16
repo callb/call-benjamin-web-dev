@@ -6,10 +6,56 @@ module.exports = function(app, models) {
     LocalStrategy = require('passport-local').Strategy;
 
     app.post("/api/user", createUser);
+    app.post("/api/login", passport.authenticate('wam'), login);
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+
+    passport.use('wam', new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if(user.username === username && user.password === password) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
 
     function createUser(req, res) {
         var user = req.body;
@@ -23,16 +69,6 @@ module.exports = function(app, models) {
                     res.status(400).send("Username " + newUser.username + " is already in use");
                 }
             );
-        // for(var i in users) {
-        //     if(users[i].username === newUser.username) {
-        //         res.status(400).send("Username " + newUser.username + " is already in use");
-        //         return;
-        //     }
-        // }
-        //
-        // newUser._id = (new Date()).getTime() + "";
-        // users.push(newUser);
-        // res.json(newUser);
     }
 
 
@@ -78,30 +114,20 @@ module.exports = function(app, models) {
                     res.status(404).send("Unable to update user with ID: " + id);
                 }
             );
-//        var newUser = req.body;
-//        for(var i in users) {
-//            if(users[i]._id === id) {
-//                users[i].firstName = newUser.firstName;
-//                users[i].lastName = newUser.lastName;
-//                res.send(200);
- //               return;
- //           }
- //       }
-//        res.status(400).send("User with ID: "+ id +" not found");
     }
 
     function getUsers(req, res) {
         var username = req.query["username"];
         var password = req.query["password"];
         if(username && password) {
-            findUserByCredentials(username, password, res);
+            findUserByCredentials(username, password, req, res);
         } else if(username) {
-            findUserByUsername(username, res);
+            findUserByUsername(username, req, res);
         } else {
             res.send(users);
         }
     }
-    function findUserByCredentials(username, password, res) {
+    function findUserByCredentials(username, password, req, res) {
 
         userModel
             .findUserByCredentials(username, password)
@@ -114,15 +140,9 @@ module.exports = function(app, models) {
                     res.status(403).send("Unable to login");
                 }
             );
- //       for(var u in users) {
- //           if(users[u].username === username && users[u].password === password) {
- //              res.send(users[u]);
- //               return;
- //           }
- //       }
- //       res.send(403);
+
     }
-    function findUserByUsername(username, res) {
+    function findUserByUsername(username, req, res) {
         for(var u in users) {
             if(users[u].username === username) {
                 res.send(users[u]);
