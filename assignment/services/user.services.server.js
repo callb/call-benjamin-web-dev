@@ -1,10 +1,23 @@
 module.exports = function(app, models) {
+
+    process.env['FACEBOOK_CLIENT_ID'] = '574921142688557';
+    process.env['FACEBOOK_CLIENT_SECRET'] = 'b623604f28630de0f3d39f5c1577e722';
+    process.env['FACEBOOK_CALLBACK_URL'] = 'http://localhost:3000/auth/facebook/callback';
+
     
     var userModel = models.userModel;
-
     var passport = require('passport');
-    LocalStrategy = require('passport-local').Strategy;
+    var LocalStrategy = require('passport-local').Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
+    var bcrypt = require("bcrypt-nodejs");
 
+
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/assignment/#/user',
+            failureRedirect: '/assignment/#/login'
+        }));
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.post("/api/user", createUser);
     app.post("/api/login", passport.authenticate('wam'), login);
     app.post("/api/register", register);
@@ -13,11 +26,61 @@ module.exports = function(app, models) {
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.delete("/api/user/:userId", authenticate, deleteUser);
 
     passport.use('wam', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+
+
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        var id = profile.id;
+        userModel
+            .findFacebookUser(id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var user = {
+                            username: profile.displayName.replace(/ /g, ''),
+                            facebook: {
+                                id: profile.id,
+                                displayName: profile.displayName
+                            }
+                        }
+                        return userModel
+                            .createUser(user);
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    return done(null, user);
+                }
+            );
+    }
+
+
+
+    function authenticate(req, res, next) {
+        if(req.isAuthenticated()) {
+            next();
+
+        } else {
+            res.send(403);
+        }
+    }
+
+
 
 
     function serializeUser(user, done) {
@@ -39,10 +102,10 @@ module.exports = function(app, models) {
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
-                    if(user.username === username && user.password === password) {
+                    if(user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {
                         return done(null, false);
@@ -71,6 +134,9 @@ module.exports = function(app, models) {
                         res.status(400).send("Username already exists");
                         return;
                     } else {
+                        req.body.password = bcrypt.hashSync(password);
+                        //return userModel.createUser(user);
+
                         return userModel
                             .createUser(req.body);
                     }

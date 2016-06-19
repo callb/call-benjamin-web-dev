@@ -18,6 +18,8 @@
                 .then(function(response) {
                     vm.user = response.data;
                 });
+
+
         }
         init();
 
