@@ -5,6 +5,16 @@
     </div>
 
     <h2>Login</h2>
+
+    <form name="loginForm" novalidate>
+        <input name="username" type="text" ng-model="username" class="form-control"/>
+            <span ng-show="myForm.$submitted && !username.length">
+                    Username Required
+            </span>
+        <input name="password" type="password" ng-model="password" class="form-control"/>
+        <button type="submit">Submit</button>
+    </form>
+
     <input ng-model="username" class="form-control"
            placeholder="username"
            type="text"/>
