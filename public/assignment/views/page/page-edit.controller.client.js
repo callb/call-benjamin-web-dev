@@ -20,18 +20,22 @@
         }
         init();
 
-        function updatePage(pageId) {
-            PageService
-                .updatePage(pageId, vm.page)
-                .then(
-                    function(response) {
-                        vm.success = "Page successfully updated";
-                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+        function updatePage(pageId, page) {
+            if(page == null) {
+                vm.error = "Page Name required"
+            } else {
+                PageService
+                    .updatePage(pageId, vm.page)
+                    .then(
+                        function(response) {
+                            vm.success = "Page successfully updated";
+                            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
         }
 
         function deletePage(pageId) {

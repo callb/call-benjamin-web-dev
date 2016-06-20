@@ -10,19 +10,23 @@
         vm.register = register;
 
         function register (username, password, password2) {
+            if (username == null || password == null ||
+                password2 == null || password2 !== password) {
 
-            UserService
-                .register(username, password)
-                .then(
-                    function(response){
-                        var user = response.data;
-                        $rootScope.currentUser = user;
-                        $location.url("/user/"+user._id);
-                    },
-                    function(error){
-                        vm.error = error.data;
-                    }
-                );
+            } else {
+                UserService
+                    .register(username, password)
+                    .then(
+                        function(response){
+                            var user = response.data;
+                            $rootScope.currentUser = user;
+                            $location.url("/user/"+user._id);
+                        },
+                        function(error){
+                            vm.error = error.data;
+                        }
+                    );
+            }
         }
     }
 })();

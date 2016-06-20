@@ -10,15 +10,20 @@
         vm.createWebsite = createWebsite;
         
         function createWebsite(userId, website) {
-            WebsiteService
-                .createWebsite(userId, website)
-                .then(function(response) {
-                    vm.website = response.body;
-                    vm.websiteName = website.name;
-                })
+            if(website == null) {
+                vm.error = "Website Name Required";
+            } else {
+                WebsiteService
+                    .createWebsite(userId, website)
+                    .then(function(response) {
+                        vm.website = response.body;
+                        vm.websiteName = website.name;
+                    });
 
-            $location.url("/user/" + vm.userId + "/website");
+                $location.url("/user/" + vm.userId + "/website");
 
+
+            }
         }
 
     }

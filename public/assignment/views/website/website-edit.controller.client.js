@@ -19,18 +19,22 @@
         }
         init();
         
-        function updateWebsite(websiteId) {
-            WebsiteService
-                .updateWebsite(websiteId, vm.website)
-                .then(
-                    function(response) {
-                        vm.success = "Website successfully updated";
-                        $location.url("/user/" + vm.userId + "/website");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+        function updateWebsite(websiteId, website) {
+            if (website == null) {
+                vm.error = "website name required"
+            } else {
+                WebsiteService
+                    .updateWebsite(websiteId, vm.website)
+                    .then(
+                        function(response) {
+                            vm.success = "Website successfully updated";
+                            $location.url("/user/" + vm.userId + "/website");
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
         }
 
         function deleteWebsite(websiteId) {

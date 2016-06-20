@@ -11,25 +11,34 @@
                 Edit Website
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateWebsite(model.websiteId)" class="navbar-link">
-                  <span class="glyphicon glyphicon-ok">
-                  </span>
-                </a>
+                <button type="submit" form="editWebsiteForm"
+                        ng-click="model.updateWebsite(model.websiteId, model.website.name)"
+                        class="glyphicon glyphicon-ok">
+                </button>
             </p>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <form>
+
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <form id="editWebsiteForm" name="editWebsiteForm" novalidate>
         <div class="form-group">
             <label for="websiteName">Website Name</label>
-            <input ng-model="model.website.name"
+            <input name="websiteName"
+                   ng-model="model.website.name"
                    type="text"
                    class="form-control"
                    id="websiteName"
-                   placeholder="alice"/>
+                   placeholder="alice" required/>
         </div>
+        <p ng-show="editWebsiteForm.$submitted && editWebsiteForm.websiteName.$invalid">
+            Website Name Required
+        </p>
         <div class="form-group">
             <label for="description">Website Description</label>
             <textarea rows="5" id="description" class="form-control">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
