@@ -19,6 +19,17 @@
         }
         initMap();
 
+
+        function init() {
+            console.log($rootScope.currentUser);
+            if (!$rootScope.currentUser) {
+                vm.userMessage = "No one currently logged in"
+            } else {
+                vm.userMessage = $rootScope.currentUser["username"] + " logged in"
+            }
+        }
+        init()
+
         function getStateData(event, data) {
             var state = data.name;
 

@@ -22,11 +22,11 @@ body {
 
 .home-heading {
     text-align: center;
-    color: white;
+    color: black;
     font-size: 60px;
-    text-shadow: 0 0 5px black;
     border-bottom: 1px solid;
     padding-bottom: 2px;
+    font-family: coda;
 
 }
 
@@ -36,15 +36,15 @@ body {
 }
 
 .home-row .home-row-heading {
-    color: white;
+    color: black;
     font-size: 30px;
-    text-shadow: 0 0 5px black;
+    font-family: coda;
 }
 
 .home-row .home-row-heading p{
-    color: white;
+    color: black;
     font-size: 15px;
-    text-shadow: 0 0 5px black;
+    font-family: coda;
 }
 
 .home-row .home-row-heading a{
@@ -53,6 +53,7 @@ body {
 
 .map-heading {
     text-align: center;
+    font-family: coda;
 }
 
 .registration-heading {
@@ -76,4 +77,21 @@ body {
 #map {
     width: auto;
     height: 750px;
+}
+
+.overflow {
+    position:absolute;
+    top:0;
+    left:0;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 0;
+    color:#ccc;
+    max-width:90%;
+}
+
+form.ng-submitted input.ng-invalid {
+    border-color: red;
 }

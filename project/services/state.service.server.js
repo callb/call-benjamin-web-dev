@@ -1,15 +1,13 @@
-module.exports = function(app) {
+module.exports = function(app, models) {
 
-    //var stateModel = models.stateModel;
+    var stateModel = models.stateModel;
 
     app.get("/api/state/:state", findStateByCode);
 
     function findStateByCode(req, res) {
-        console.log(req.params.state);
-        res.send(req.params.state + " from the server");
-        
-        /*
-        var stateCode = req.params.state;
+        //res.send(req.params.state + " from the server");
+
+        var state = req.params.state;
 
         stateModel
             .findStateByCode(state)
@@ -21,7 +19,6 @@ module.exports = function(app) {
                     res.status(400).send(error);
                 }
             );
-            */
     }
 
 };
