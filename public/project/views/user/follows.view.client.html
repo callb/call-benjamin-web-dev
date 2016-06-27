@@ -1,3 +1,18 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li><a href="#/home">Home</a></li>
+            <li><a href="#/map">Election Map</a></li>
+            <li><a href="#/login">Login</a></li>
+            <li><a href="#/register">Register</a></li>
+            <li><a href="#/profile">Profile</a></li>
+            <li><a href="#">{{model.userMessage}}</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
 <h1>
     Follows
 </h1>
@@ -6,14 +21,19 @@
     States
 </h1>
 
-<div ng-repeat="state in vm.followedStates">
-    {{follows}}
+<div ng-repeat="state in model.stateFollows">
+    {{state}}
+    <a ng-click="model.unfollow(state)">
+        <button class="btn btn-danger btn-block">Unfollow</button>
+    </a>
 </div>
-
-<h1>
-    Candidates
-</h1>
 
 <h1>
     Users
 </h1>
+<div ng-repeat="user in model.userFollows">
+    {{user}}
+    <a ng-click="model.unfollow(user)">
+        <button class="btn btn-danger btn-block">Unfollow</button>
+    </a>
+</div>

@@ -12,7 +12,9 @@ module.exports = function() {
         findFacebookUser: findFacebookUser,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        follow: follow
+        //findFollows: findFollows,
+        follow: follow,
+        deleteFollow: deleteFollow
     };
     return api;
 
@@ -48,8 +50,18 @@ module.exports = function() {
         return ProjectUser.remove({_id: userId});
     }
 
+    function deleteFollow(id, user) {
+        return ProjectUser.update(
+            {_id: user},
+            {$pull :
+            {"follows": {object: id}}
+
+            }
+        )
+    }
+
+    
     function follow(object, user, type) {
-        console.log("HEREf")
         return ProjectUser.update(
             {_id: user},
             {$push :

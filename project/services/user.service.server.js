@@ -29,6 +29,8 @@ module.exports = function(app, models) {
     app.delete("/api/project/user/:userId", authenticate, deleteUser);
     
     app.post("/api/project/follow", follow);
+    app.post("/api/project/findFollows", findFollows);
+    app.delete("/api/project/id/:id/user/:user", unfollow);
 
     passport.use('ec', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -119,6 +121,37 @@ module.exports = function(app, models) {
             );
     }
 
+
+    function unfollow(req, res) {
+        var id = req.params.id;
+        var user = req.params.user;
+
+        userModel
+            .deleteFollow(id, user)
+            .then(
+                function(user) {
+                    res.send(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove follow with ID: " + id);
+                }
+            );
+    }
+    
+    
+    function findFollows(req, res) {
+        var id = req.body;
+        userModel
+            .findFollows(id)
+            .then(
+                function(follows) {
+                    res.send(follows);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
     
     function follow(req, res) {
         var user = req.body.user;
@@ -284,12 +317,15 @@ module.exports = function(app, models) {
 
     }
     function findUserByUsername(username, req, res) {
-        for(var u in users) {
-            if(users[u].username === username) {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.send({});
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function(user) {
+                    res.json(user);
+                },
+                function(error) {
+                    res.status(403).send("Unable to find user");
+                }
+            )
     }
 };

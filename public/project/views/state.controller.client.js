@@ -48,6 +48,7 @@
                     .then(
                         function(status) {
                             vm.message = "Following state";
+                            $location.url("/profile/" + user + "/follows")
                         },
                         function(error) {
                             vm.error = "Problem following state";

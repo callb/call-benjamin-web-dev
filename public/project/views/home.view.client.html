@@ -5,7 +5,7 @@
             <li><a href="#/map">Election Map</a></li>
             <li><a href="#/login">Login</a></li>
             <li><a href="#/register">Register</a></li>
-            <li><a href="#/profile">Profile</a></li>
+            <li><a href="#/profile/{{model.userId}}">Profile</a></li>
             <li><a href="#">{{model.userMessage}}</a></li>
         </ul>
 
@@ -18,15 +18,17 @@
     <div class="row home-row">
         <div class="col-md-4 home-row-heading">Connect with Others
             <p>
-                Put Description here
+                Type a username to search for that user. Click on the user to find out their info and to follow their
+                follows and other data assiocated with them!
             </p>
-            <a href="#">
+            <a href="#/users">
                 <button type="button" class="btn btn-danger btn-block btn-lg">Start Connecting!</button>
             </a>
         </div>
         <div class="col-md-4 home-row-heading">View Polling By State
             <p>
-                Put Description here
+                Click on a state to view it's polling data, some polls not available for some states. Click follow
+                to follow that state on your follows page.
             </p>
             <a href="#/map">
                 <button type="button" class="btn btn-default btn-block btn-lg">View the Map!</button>
@@ -34,9 +36,9 @@
         </div>
         <div class="col-md-4 home-row-heading">Track your Candidates
             <p>
-                Put Description here
+                Not yet working!
             </p>
-            <a href="#">
+            <a href="#/candidates">
                 <button type="button" class="btn btn-primary btn-block btn-lg">Track Now!</button>
             </a>
         </div>

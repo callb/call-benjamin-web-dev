@@ -23,7 +23,7 @@
             .when("/profile/:id/follows", {
                 templateUrl: "views/user/follows.view.client.html",
                 controller: "FollowsController",
-                controllerAs: "model",
+                controllerAs: "model"
             })
             .when("/profile/:id", {
                 templateUrl: "views/user/profile.view.client.html",
@@ -39,6 +39,16 @@
             .when("/map/:state", {
                 templateUrl: "views/state.view.client.html",
                 controller: "StateController",
+                controllerAs: "model"
+            })
+            .when("/users", {
+                templateUrl: "views/users.view.client.html",
+                controller: "UsersController",
+                controllerAs: "model"
+            })
+            .when("/users/:username", {
+                templateUrl: "views/userInfo.view.client.html",
+                controller: "UserInfoController",
                 controllerAs: "model"
             })
             .otherwise({

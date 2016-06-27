@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="#/home">Home</a></li>
+            <li><a href="#/map">Election Map</a></li>
+            <li><a href="#/login">Login</a></li>
+            <li><a href="#/register">Register</a></li>
+            <li><a href="#/profile">Profile</a></li>
+            <li><a href="#">{{model.userMessage}}</a></li>
+        </ul>
+    </div>
+</nav>
+
+{{model.foundUser}}
+
+<a ng-click="model.followUser()" type="button" class="btn btn-success">Follow</a>

@@ -8,10 +8,10 @@
         var vm = this;
         
         function init() {
-            console.log($rootScope.currentUser);
             if (!$rootScope.currentUser) {
                 vm.userMessage = "No one currently logged in"
             } else {
+                vm.userId = $rootScope.currentUser["_id"];
                 vm.userMessage = $rootScope.currentUser["username"] + " logged in"
             }
         }

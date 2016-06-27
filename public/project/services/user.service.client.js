@@ -16,10 +16,22 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             follow: follow,
-            findFollowsByUser: findFollowsByUser
+            findFollowsByUser: findFollowsByUser,
+            findUserByUsername: findUserByUsername,
+            removeFollowById: removeFollowById
         };
         return api;
 
+        
+        function removeFollowById(id, user) {
+            var url = "/api/project/id/" + id + "/user/" + user;
+            return $http.delete(url)
+        }
+        
+        function findUserByUsername(username) {
+            var url = "/api/project/user?username="+username;
+            return $http.get(url);
+        }
 
         function findFollowsByUser(id) {
             var url = "/api/project/findFollows";
