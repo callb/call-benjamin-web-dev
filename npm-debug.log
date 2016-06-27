@@ -1,0 +1,62 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'package.json' ]
+2 info using npm@3.8.6
+3 info using node@v6.1.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData package.json
+8 silly fetchOtherPackageData package.json
+9 silly cache add args [ 'package.json', null ]
+10 verbose cache add spec package.json
+11 silly cache add parsed spec Result {
+11 silly cache add   raw: 'package.json',
+11 silly cache add   scope: null,
+11 silly cache add   name: null,
+11 silly cache add   rawSpec: 'package.json',
+11 silly cache add   spec: '/home/ben/webdev/package.json',
+11 silly cache add   type: 'local' }
+12 silly addLocalTarball shasum (computed) 558ba8a7e95cff2f2167757d9fc3b6535ce352dd
+13 verbose addTmpTarball /home/ben/webdev/package.json not in flight; adding
+14 verbose correctMkdir /home/ben/.npm correctMkdir not in flight; initializing
+15 verbose addTmpTarball validating metadata from /home/ben/webdev/package.json
+16 verbose tar unpack /home/ben/webdev/package.json
+17 verbose tar unpacking to /tmp/npm-21631-d9f86dec/unpack-3fd3234c
+18 silly gentlyRm /tmp/npm-21631-d9f86dec/unpack-3fd3234c is being purged
+19 verbose gentlyRm don't care about contents; nuking /tmp/npm-21631-d9f86dec/unpack-3fd3234c
+20 silly gunzTarPerm modes [ '775', '664' ]
+21 error not a package /home/ben/webdev/package.json
+22 error addLocal Could not install /home/ben/webdev/package.json
+23 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open '/tmp/npm-21631-d9f86dec/unpack-3fd3234c/package.json'
+23 silly fetchPackageMetaData     at Error (native)
+23 silly fetchPackageMetaData  error for package.json { Error: ENOENT: no such file or directory, open '/tmp/npm-21631-d9f86dec/unpack-3fd3234c/package.json'
+23 silly fetchPackageMetaData     at Error (native)
+23 silly fetchPackageMetaData   errno: -2,
+23 silly fetchPackageMetaData   code: 'ENOENT',
+23 silly fetchPackageMetaData   syscall: 'open',
+23 silly fetchPackageMetaData   path: '/tmp/npm-21631-d9f86dec/unpack-3fd3234c/package.json' }
+24 silly rollbackFailedOptional Starting
+25 silly rollbackFailedOptional Finishing
+26 silly runTopLevelLifecycles Starting
+27 silly runTopLevelLifecycles Finishing
+28 silly install printInstalled
+29 verbose stack Error: ENOENT: no such file or directory, open '/tmp/npm-21631-d9f86dec/unpack-3fd3234c/package.json'
+29 verbose stack     at Error (native)
+30 verbose cwd /home/ben/webdev
+31 error Linux 3.16.0-50-generic
+32 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--save" "package.json"
+33 error node v6.1.0
+34 error npm  v3.8.6
+35 error path /tmp/npm-21631-d9f86dec/unpack-3fd3234c/package.json
+36 error code ENOENT
+37 error errno -2
+38 error syscall open
+39 error enoent ENOENT: no such file or directory, open '/tmp/npm-21631-d9f86dec/unpack-3fd3234c/package.json'
+40 error enoent ENOENT: no such file or directory, open '/tmp/npm-21631-d9f86dec/unpack-3fd3234c/package.json'
+40 error enoent This is most likely not a problem with npm itself
+40 error enoent and is related to npm not being able to find a file.
+41 verbose exit [ -2, true ]
