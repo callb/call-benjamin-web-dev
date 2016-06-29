@@ -55,7 +55,7 @@
                 .removeFollowById(id, user)
                 .then(
                     function(response) {
-                        $location.url("/profile/" + user + "/follows");
+                        $location.url("/profile/" + user);
                     },
                     function(error) {
                         vm.error = error;

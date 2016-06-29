@@ -161,7 +161,7 @@ module.exports = function(app, models) {
             .follow(object, user, type)
             .then(
                 function(user) {
-                    res.status(200);
+                    res.send(200);
                 },
                 function(error) {
                     res.status(400).send("Unable to follow state")
