@@ -39,4 +39,3 @@ if(process.env.OPENSHIFT_MONGODB_DB_URL){
 
 app.listen(server_port, server_ip_address);
 
-app.listen(port, ipaddress);
