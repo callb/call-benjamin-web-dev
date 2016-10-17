@@ -24,24 +24,46 @@ module.exports = function(app, models) {
     function updateAllPollingData() {
         var stateCodes = fetchStateCodes();
         for (var i = 0, len = stateCodes.length; i < len; i++) {
-            var rawDataForState = fetchPollingDataByState(stateCodes[i]);
-            var parsedDataForState = parseStatePollingData(rawDataForState);
-             stateModel
-                 .updatePollingDataByState(parsedDataForState)
-                 .then(
-                     function(success) {
-                         //update to state polling data successful
-                     },
-                     function(error) {
-                         res.status(400).send(error)
-                     }
-                 );
+            fetchAndUpdatePollingDataByState(stateCodes[i]);
         }
     }
 
-    function fetchPollingDataByState(state) {
-        pollster.charts({topic: '2016-president', state: state}, function(resp){
-            return resp[0];
+    function parseStatePollingData(data) {
+        if (data) {
+            var state = data['state'];
+            var estimates = data['estimates'];
+            return {
+                state : state,
+                estimates: estimates
+            }
+        }
+
+        return null;
+    }
+
+    function fetchAndUpdatePollingDataByState(state) {
+        pollster.charts({topic: '2016-president', state: state}, function(resp) {
+            //var parsedData = parseStatePollingData(resp[0]);
+            var data = resp[0];
+            if (data) {
+                var state = data['state'];
+                var estimates = data['estimates'];
+                console.log(data);
+                for (var j = 0, len = estimates.length; j < len; j++) {
+                    var party = estimates[j]['party'];
+                    stateModel
+                        .updateStatePollingDataByCandidate(estimates[j], state, party)
+                        .then(
+                            function(success) {
+                                //successfully entered the polling data
+                            },
+                            function(error) {
+                                res.status(400).send(error);
+                            }
+                        )
+                }
+            }
+            
         });
     }
 
@@ -57,5 +79,7 @@ module.exports = function(app, models) {
             'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'WA',
             'WV', 'WI', 'WY']
     }
+
+    updateAllPollingData()
 
 };
