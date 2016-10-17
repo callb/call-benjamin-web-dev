@@ -7,7 +7,7 @@ module.exports = function() {
         repPolling: Number,
         demPolling: Number,
         thirdPartyPolling: Number,
-        other: Number
+        otherPolling: Number
     }, {collection: "project.state"});
 
     return StateSchema;

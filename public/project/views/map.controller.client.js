@@ -28,7 +28,7 @@
                 vm.userMessage = $rootScope.currentUser["username"] + " logged in"
             }
         }
-        init()
+        init();
 
         function getStateData(event, data) {
             var state = data.name;

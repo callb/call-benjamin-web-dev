@@ -21,6 +21,11 @@ module.exports = function(app, models) {
             );
     }
 
+    function setInitialUpdateAndPeriodicUpdates() {
+        updateAllPollingData();
+        setInterval(updateAllPollingData, 1000000)
+    }
+
     function updateAllPollingData() {
         var stateCodes = fetchStateCodes();
         for (var i = 0, len = stateCodes.length; i < len; i++) {
@@ -28,27 +33,12 @@ module.exports = function(app, models) {
         }
     }
 
-    function parseStatePollingData(data) {
-        if (data) {
-            var state = data['state'];
-            var estimates = data['estimates'];
-            return {
-                state : state,
-                estimates: estimates
-            }
-        }
-
-        return null;
-    }
-
     function fetchAndUpdatePollingDataByState(state) {
         pollster.charts({topic: '2016-president', state: state}, function(resp) {
-            //var parsedData = parseStatePollingData(resp[0]);
             var data = resp[0];
             if (data) {
                 var state = data['state'];
                 var estimates = data['estimates'];
-                console.log(data);
                 for (var j = 0, len = estimates.length; j < len; j++) {
                     var party = estimates[j]['party'];
                     stateModel
@@ -80,6 +70,7 @@ module.exports = function(app, models) {
             'WV', 'WI', 'WY']
     }
 
-    updateAllPollingData()
+    // constant updates to polling data
+    setInitialUpdateAndPeriodicUpdates()
 
 };

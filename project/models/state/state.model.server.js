@@ -17,14 +17,13 @@ module.exports = function() {
     }
 
     function updateStatePollingDataByCandidate(data, state, party) {
-        var candidate = data['choice'];
         var pollNumber = data['value'];
         switch(party) {
             case 'Rep':
                 return State.update(
                     {code: state},
                     {$set: {
-
+                        repPolling: pollNumber
                     }
                     }
 
@@ -34,13 +33,21 @@ module.exports = function() {
                 return State.update(
                     {code: state},
                     {$set: {
-
+                        demPolling: pollNumber
                     }
                     }
 
-                )
-            break;
-            default: //TODO: Third parties/Other
+                );
+            //TODO: Fix other/third party polling
+            default:
+                return State.update(
+                    {code: state},
+                    {$set: {
+                        otherPolling: pollNumber
+                    }
+                    }
+
+                );
             
         }
     }
