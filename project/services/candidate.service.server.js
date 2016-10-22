@@ -9,7 +9,7 @@ module.exports = function(app, models) {
 
         var candidate = req.params.candidate;
 
-        var info = candidateModel.findCandidateByName(candidate);
+        var info = candidateModel.findCandidateByParty(candidate);
         res.send(info);
         /**
          .then(

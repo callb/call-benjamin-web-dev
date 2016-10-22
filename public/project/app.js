@@ -1,3 +1,3 @@
 (function(){
-    angular.module("ElectionCenter", ["ngRoute"]);
+    angular.module("ElectionCenter", ["ngRoute", "angularCharts"]);
 })();

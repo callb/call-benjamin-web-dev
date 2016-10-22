@@ -11,9 +11,6 @@
     </div>
 </nav>
 
-
-<h1>
-    STATE INFO {{model.state}}
-</h1>
+<div ac-chart='model.chartType' ac-data="model.acData" ac-config="model.config" id='chart' class='chart'></div>
 
 <a ng-click="model.followState()" type="button" class="btn btn-success">Follow</a>

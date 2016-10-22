@@ -92,6 +92,11 @@ body {
     max-width:90%;
 }
 
+#chart {
+    height: 400px;
+    width: 800px;
+}
+
 form.ng-submitted input.ng-invalid {
     border-color: red;
 }
