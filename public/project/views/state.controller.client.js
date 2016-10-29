@@ -35,12 +35,16 @@
             }
         }
         initUser();
+        
+        function fetchPollingData() {
+            
+        }
 
         function initGraph() {
             vm.chartType = 'bar';
             
             var acData = {
-                series: ["Sales", "Income", "Expense"],
+                series: ["Republican", "Democrat", "Other"],
                 data: [{
                     x: "",
                     y: [54, 55, 879],
@@ -76,8 +80,7 @@
             vm.config = config;
         }
         initGraph();
-
-
+        
 
         function followState() {
             if (!$rootScope.currentUser) {
