@@ -12,7 +12,8 @@
         function initMap() {
             $(document).ready(function() {
                 $('#map').usmap({
-                    click: getStateData
+                    click: getStateData,
+                    stateStyle: {fill: getStateColor}
                 });
             });
             
@@ -32,10 +33,15 @@
 
         function getStateData(event, data) {
             var state = data.name;
+            console.log(data);
 
             $rootScope.$apply(function() {
                 $location.url("/map/" + state);
             })
+            
+        }
+
+        function getStateColor() {
             
         }
     }

@@ -18,6 +18,7 @@
                         vm.state = response.data[0];
                         vm.stateName = vm.state["name"];
                         vm.stateCode = vm.state["code"];
+                        initGraph(vm.state)
                     },
                     function(error) {
                         vm.error = error.data;
@@ -35,19 +36,14 @@
             }
         }
         initUser();
-        
-        function fetchPollingData() {
-            
-        }
 
-        function initGraph() {
+        function initGraph(state) {
             vm.chartType = 'bar';
-            
             var acData = {
                 series: ["Republican", "Democrat", "Other"],
                 data: [{
                     x: "",
-                    y: [54, 55, 879],
+                    y: [state["repPolling"], state["demPolling"], state["otherPolling"]],
                     tooltip: "This is a tooltip"
                 }]
             };
@@ -79,7 +75,6 @@
             vm.acData = acData;
             vm.config = config;
         }
-        initGraph();
         
 
         function followState() {

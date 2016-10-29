@@ -6,13 +6,19 @@
     function StateService($http) {
 
         var api = {
-            findStateByCode : findStateByCode
+            findStateByCode : findStateByCode,
+            getAllStateCodes : getAllStateCodes
         };
         return api;
         
         function findStateByCode(state) {
             var url = "/api/state/" + state;
             return $http.get(url);
+        }
+        
+        function getAllStateCodes() {
+            var url = "/api/state/all";
+            return $http.get(url)
         }
 
     }
