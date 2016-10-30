@@ -47,6 +47,7 @@ module.exports = function(app, models) {
         updateAllPollingData();
         setInterval(updateAllPollingData, 1000000)
     }
+    
 
     function updateAllPollingData() {
         var stateCodes = fetchStateCodes();
