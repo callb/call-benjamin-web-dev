@@ -50,7 +50,17 @@
                     colorMap[stateCode] = "#7B7D7D"
                 } else if(diff > 0 && diff < 5) {
                     //republican lean
-                    colorMap[stateCode] = "#F1948A "
+                    colorMap[stateCode] = "#F1948A"
+                } else if (diff >= 5) {
+                    //republican safe
+                    colorMap[stateCode] = "#922B21"
+                } else if (diff < 0 && diff > -5) {
+                    //democrat lean
+                    colorMap[stateCode] = "#A9CCE3 "
+                } else if (diff <= -5) {
+                    //democrat safe
+                    colorMap[stateCode] = "#1F618D "
+
                 } else  {
                     //toss-up
                     colorMap[stateCode] = "#FBFCFC";
@@ -69,6 +79,7 @@
             $(document).ready(function() {
                 $('#map').usmap({
                     click: getStateData,
+                    stateHoverStyles: {fill: 'black'},
                     stateSpecificStyles: {
                         'AL': {fill: colorMap['AL']}, 'AK': {fill: colorMap['AK']},
                         'AS': {fill: colorMap['AS']}, 'AZ': {fill: colorMap['AZ']},
