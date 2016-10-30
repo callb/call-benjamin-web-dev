@@ -40,7 +40,7 @@ module.exports = function(app, models) {
         for (var c in rawCodes) {
             codeList.push(rawCodes[c]["code"])
         }
-        return rawCodes
+        return codeList
     }
 
     function setInitialUpdateAndPeriodicUpdates() {
