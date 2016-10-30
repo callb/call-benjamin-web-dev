@@ -4,6 +4,7 @@ module.exports = function(app, models) {
     var pollster = require('pollster');
 
     app.get("/api/state/:state", findStateByCode);
+    app.get("/api/state/all", getAllStateCodes);
 
     function findStateByCode(req, res) {
         //res.send(req.params.state + " from the server");
@@ -14,6 +15,24 @@ module.exports = function(app, models) {
             .then(
                 function(state) {
                     res.send(state);
+                },
+                function(error) {
+                    res.status(400).send(error)
+                }
+            );
+    }
+
+    
+    function parseStateCodes(codes) {
+        
+    }
+    
+    function getAllStateCodes() {
+        stateModel
+            .getAllStateCodes()
+            .then(
+                function(codes) {
+                    res.send(parseStateCodes(codes));
                 },
                 function(error) {
                     res.status(400).send(error)
@@ -57,11 +76,9 @@ module.exports = function(app, models) {
         });
     }
 
-    //setInterval(fetchElectionData('MA'), 1000)
-
     function fetchStateCodes() {
-        return ['AL', 'AK', 'AS', 'AZ', 'AR',
-            'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI',
+        return ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA',
+            'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'HI',
             'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA',
             'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO',
             'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY',

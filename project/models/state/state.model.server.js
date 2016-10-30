@@ -7,7 +7,8 @@ module.exports = function() {
 
     var api = {
         findStateByCode: findStateByCode,
-        updateStatePollingDataByCandidate: updateStatePollingDataByCandidate
+        updateStatePollingDataByCandidate: updateStatePollingDataByCandidate,
+        getAllStateCodes: getAllStateCodes
     };
     return api;
 
@@ -48,8 +49,11 @@ module.exports = function() {
                     }
 
                 );
-            
         }
+    }
+
+    function getAllStateCodes() {
+        return State.find({}, "code");
     }
 
 };
