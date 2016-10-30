@@ -17,7 +17,7 @@
         }
         
         function getAllStateCodes() {
-            var url = "/api/state/all";
+            var url = "/api/state-codes";
             return $http.get(url)
         }
 

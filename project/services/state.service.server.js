@@ -4,7 +4,7 @@ module.exports = function(app, models) {
     var pollster = require('pollster');
 
     app.get("/api/state/:state", findStateByCode);
-    app.get("/api/state/all", getAllStateCodes);
+    app.get("/api/state-codes/", getAllStateCodes);
 
     function findStateByCode(req, res) {
         //res.send(req.params.state + " from the server");
@@ -21,13 +21,8 @@ module.exports = function(app, models) {
                 }
             );
     }
-
     
-    function parseStateCodes(codes) {
-        
-    }
-    
-    function getAllStateCodes() {
+    function getAllStateCodes(req, res) {
         stateModel
             .getAllStateCodes()
             .then(
@@ -38,6 +33,14 @@ module.exports = function(app, models) {
                     res.status(400).send(error)
                 }
             );
+    }
+
+    function parseStateCodes(rawCodes) {
+        var codeList = [];
+        for (var c in rawCodes) {
+            codeList.push(rawCodes[c]["code"])
+        }
+        return rawCodes
     }
 
     function setInitialUpdateAndPeriodicUpdates() {
@@ -84,7 +87,7 @@ module.exports = function(app, models) {
             'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY',
             'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI',
             'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'WA',
-            'WV', 'WI', 'WY']
+            'WV', 'WI', 'WY', 'VT']
     }
 
     // constant updates to polling data
