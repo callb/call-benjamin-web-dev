@@ -51,15 +51,21 @@
                 } else if(diff > 0 && diff < 5) {
                     //republican lean
                     colorMap[stateCode] = "#F1948A"
-                } else if (diff >= 5) {
+                } else if(diff >= 5 && diff < 10) {
+                    //republican favored
+                    colorMap[stateCode] = "#E74C3C"
+                } else if (diff >= 10) {
                     //republican safe
                     colorMap[stateCode] = "#922B21"
                 } else if (diff < 0 && diff > -5) {
                     //democrat lean
-                    colorMap[stateCode] = "#A9CCE3 "
-                } else if (diff <= -5) {
+                    colorMap[stateCode] = "#A9CCE3"
+                } else if (diff <= -5 && diff >= -10) {
+                    //democrat favored
+                    colorMap[stateCode] = "#2980B9"
+                } else if (diff <= -10) {
                     //democrat safe
-                    colorMap[stateCode] = "#1F618D "
+                    colorMap[stateCode] = "#1A5276 "
 
                 } else  {
                     //toss-up
