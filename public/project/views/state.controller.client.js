@@ -43,8 +43,8 @@
                 series: ["Republican", "Democrat", "Other"],
                 data: [{
                     x: "",
-                    y: [state["repPolling"], state["demPolling"], state["otherPolling"]],
-                    tooltip: "This is a tooltip"
+                    y: [state["repPolling"], state["demPolling"], state["otherPolling"]]
+                    //tooltip: "This is a tooltip"
                 }]
             };
             var config = {

@@ -30,7 +30,7 @@
                         vm.stateFollows = [];
                         vm.userFollows = [];
                         for(var i = 0; i < vm.follows.length; i++) {
-                            follow = vm.follows[i]
+                            follow = vm.follows[i];
                             if(follow["type"] == "state") {
                                 vm.stateFollows.push(follow);
                             }

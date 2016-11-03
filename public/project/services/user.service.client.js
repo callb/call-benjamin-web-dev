@@ -46,6 +46,7 @@
                 object: object,
                 type: type
             };
+            console.log(follow);
             return $http.post(url, follow)
         }
 
