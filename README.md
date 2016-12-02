@@ -1,13 +1,3 @@
 # call-benjamin-web-dev
 
-
-Please Use usernames and passwords
-
-Username: jannunzi
-Password: jannunzi
-
-Username: alice
-Password: alice
-
-Username: Bob
-Password: Bob
+Real Time Polling Application for this past Election. For client code, please look under public/projects. For server side code, please look under ~/projects.
